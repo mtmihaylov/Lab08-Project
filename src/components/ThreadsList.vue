@@ -1,31 +1,23 @@
 <script setup>
   import { useThreadsListStore } from '../stores/ThreadsList';
   import { storeToRefs } from 'pinia';
-  
-  import ThreadCard from './ThreadCard.vue'
+  import ThreadCards from './ThreadCards.vue'
 
-  const store = useThreadsListStore();
-  store.loadThreads();
-
+  const store = useThreadsListStore();  
   const { threadsList } = storeToRefs(store);
 
+  store.loadThreads();
 </script> 
 
 <template>
   <div class="threads">
-    <ThreadCard v-for="(thread, index) in threadsList" :key="index" :thread="thread"/>
+    <ThreadCards v-for="(thread, index) in threadsList" :key="index" :thread="thread"/>
   </div>
 </template>
 
 <style scoped lang="scss">
   .threads {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 768px;
-    min-width: 320px;
-    margin: 0 auto;
-    margin-top: 20px;
+    padding: 20px 30px;
+    // overflow-x: hidden;
   }
-  
 </style>
